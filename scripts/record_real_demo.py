@@ -2,10 +2,10 @@
 record real screen footage of the agent functioning, save as MP4.
 
 Output: ~60-90s WebM/MP4 showing the actual deployed Streamlit dashboard
-loading, accepting a question, running the agent, and rendering the
-verbatim NL→MongoDB answer. This is the "footage that shows the Project
-functioning on the platform(s) for which it was built" the Devpost
-moderator asked for.
+loading, accepting a research question, walking the Bright Data MCP
+tools, and rendering the verbatim labeled-section answer. This is the
+"footage that shows the Project functioning on the platform(s) for which
+it was built" that lablab/Devpost moderators want.
 """
 
 from __future__ import annotations
@@ -45,10 +45,7 @@ def main() -> int:
         time.sleep(2)
 
         # Make sure the sidebar question is what the demo narrates.
-        question = (
-            "How many users have logged in within the last 7 days, "
-            "grouped by plan?"
-        )
+        question = "Anthropic Claude latest release notes 2026"
         # The Streamlit textarea is the first textarea on the page.
         textareas = page.locator("textarea")
         if textareas.count() > 0:
@@ -56,9 +53,9 @@ def main() -> int:
             print(f"    question set: {question[:60]}...")
             time.sleep(1.5)
 
-        # Click "Run query" — Streamlit's buttons have a wrapping kind=primary.
-        print("[3/4] clicking Run query and waiting for the agent response...")
-        page.locator("button", has_text="Run query").first.click()
+        # Click "Run research" — Streamlit's buttons have a wrapping kind=primary.
+        print("[3/4] clicking Run research and waiting for the agent response...")
+        page.locator("button", has_text="Run research").first.click()
         # Wait for the spinner to disappear (means the agent finished).
         # Streamlit shows "Running Vertex AI Gemini..." while busy.
         page.wait_for_selector("text=Running Vertex AI", timeout=120_000)

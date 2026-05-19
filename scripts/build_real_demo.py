@@ -1,15 +1,15 @@
 """Build the final gemini-bright-agent demo video.
 
 Composition:
-  - 14s intro slide with TTS narration
-  - 39s real Cloud Run footage (already captured at .video-build/real_footage.mp4)
-  - 11s outro slide with TTS narration
+  - ~14s intro slide with TTS narration
+  - ~32s real Cloud Run footage (already captured at .video-build/real_footage.mp4)
+  - ~11s outro slide with TTS narration
 
-Total ≈ 64s, under the 3-minute Devpost limit, and the centerpiece is real
-footage showing the deployed Streamlit dashboard answering "How many users
-have logged in within the last 7 days, grouped by plan?" — verbatim
-breakdown (269 free / 73 pro / 127 starter / 31 enterprise) + the
-aggregation pipeline + agent event trace.
+Total ≈ 60s, well under the 3-minute lablab submission limit. Centerpiece
+is real footage of the deployed Streamlit dashboard answering "Anthropic
+Claude latest release notes 2026" by walking the Bright Data MCP tools
+(SERP API + Web Unlocker scrape + LinkedIn dataset lookup) and citing
+verbatim quotes back from the unlocked Anthropic pages.
 """
 
 from __future__ import annotations
@@ -25,8 +25,8 @@ from PIL import Image, ImageDraw, ImageFont
 W, H = 1920, 1080
 FG = "#0f172a"
 FG_MUTED = "#475569"
-ACCENT = "#10b981"          # MongoDB green
-ACCENT_2 = "#0f766e"
+ACCENT = "#f59e0b"          # Bright Data amber
+ACCENT_2 = "#b45309"
 BG = "#ffffff"
 PANEL = "#f8fafc"
 
@@ -52,16 +52,16 @@ def draw_intro(img, d):
     d.text((96, 220), "gemini-bright-agent", font=font(108), fill=FG)
     d.rectangle([(96, 360), (340, 372)], fill=ACCENT)
     d.text((96, 410),
-           "Plain-English questions → MongoDB aggregations,",
+           "Plain-English research questions → SERP → unlock → cite,",
            font=font(40), fill=FG_MUTED)
     d.text((96, 470),
-           "with verbatim counts straight from the cluster.",
+           "with verbatim quotes straight from the live web.",
            font=font(40), fill=FG_MUTED)
     d.text((96, 600),
-           "Google Cloud Rapid Agent Hackathon",
+           "Bright Data AI Agents Web Data Hackathon",
            font=font(32), fill=FG)
     d.text((96, 645),
-           "· MongoDB partner track ·",
+           "· lablab.ai · May 25 to 31, 2026 ·",
            font=font(32), fill=FG_MUTED)
     d.text((96, 760),
            "What follows is real footage of the deployed",
@@ -88,13 +88,13 @@ def draw_outro(img, d):
            "+ Gemini 2.5 Flash on Vertex AI",
            font=font(32), fill=FG_MUTED)
     d.text((96, 640),
-           "+ MongoDB MCP server (stub demo, real-cluster ready)",
+           "+ Bright Data MCP (SERP, Web Unlocker, datasets)",
            font=font(32), fill=FG_MUTED)
     d.text((96, 760),
-           "Numbers in this demo are copied verbatim from the",
+           "Quotes in this demo are copied byte-for-byte from",
            font=font(26, italic=True), fill=FG_MUTED)
     d.text((96, 800),
-           "MongoDB aggregation. No values fabricated.",
+           "the unlocked source pages. No paraphrasing.",
            font=font(26, italic=True), fill=FG_MUTED)
     d.text((96, 870),
            "Apache 2.0. Mukunda Katta, independent.",
@@ -102,19 +102,20 @@ def draw_outro(img, d):
 
 
 INTRO_NARRATION = (
-    "Gemini data agent. A natural language data query agent on Google Cloud "
-    "Agent Builder, wired to the Mongo D B M C P server. Submission for the "
-    "Google Cloud Rapid Agent Hackathon, Mongo D B partner track. What follows "
-    "is real footage of the deployed Cloud Run dashboard answering a live "
-    "question, with verbatim numbers from the cluster."
+    "Gemini bright agent. A web research agent on Google Cloud Agent "
+    "Builder, wired to the Bright Data M C P server. Submission for the "
+    "Bright Data A I Agents Web Data Hackathon on lablab dot a i. What "
+    "follows is real footage of the deployed Cloud Run dashboard walking "
+    "the Bright Data tools and citing verbatim quotes from the live web."
 )
 
 
 OUTRO_NARRATION = (
-    "The numbers you just saw, 269 free users, 73 pro, 127 starter, 31 "
-    "enterprise, all came directly from the Mongo D B aggregation pipeline. "
-    "The agent never fabricates. Built on the A D K with Gemini two point five "
-    "Flash, wired to the Mongo D B M C P server. Apache two point zero. Thank you."
+    "Every quote you just saw was copied byte for byte from the unlocked "
+    "Anthropic page. The agent never paraphrases. Built on the A D K with "
+    "Gemini two point five Flash, wired to the Bright Data M C P server, "
+    "S E R P, Web Unlocker, and structured datasets. Apache two point zero. "
+    "Thank you."
 )
 
 
